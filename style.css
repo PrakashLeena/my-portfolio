@@ -123,6 +123,11 @@
     animation-duration: 31s;
 }
 
+#location{
+    margin-left: 60%;
+    margin-bottom:5% ;
+}
+
 @keyframes gradientShift {
     0% {
         background-position: 0% 50%;
@@ -339,24 +344,60 @@ p span{
     }
 }
 
+.welcome-image {
+    position: relative;
+    display: inline-block;
+    width: 100%; /* Ensure it takes full width of its container */
+    height: 100%; /* Ensure it takes full height of its container */
+}
+
 .location-tag {
+    position: absolute;
+    top: 20px;
+    left: 20px;
     display: inline-flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.95);
-    color: #40247a;
-    font-weight: 600;
-    font-size: 1.1rem;
-    padding: 6px 16px 6px 10px;
-    border-radius: 18px;
-    box-shadow: 0 2px 8px 0 rgba(21,7,52,0.10);
-    margin-bottom: 16px;
-    margin-left: 8px;
-    margin-top: 8px;
-    width: fit-content;
-    z-index: 10;
+    background: rgba(21, 7, 52, 0.9);
+    padding: 8px 16px 8px 12px;
+    border-radius: 25px;
+    color: #ffae42;
+    font-size: 15px;
+    font-weight: 500;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 174, 66, 0.4);
+    z-index: 3;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     opacity: 0;
     transform: translateY(-30px) scale(0.96);
     animation: locationFadeBounce 1.4s cubic-bezier(.4,2,.6,1) 0.7s forwards;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    pointer-events: none; /* Ensure it doesn't interfere with interactions */
+}
+
+.location-tag::after {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-left: 8px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffae42'%3E%3Cpath d='M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: arrowPulse 2s infinite;
+}
+
+@keyframes arrowPulse {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(4px); }
+}
+
+.location-tag:hover {
+    background: rgba(21, 7, 52, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    padding-right: 20px;
 }
 @keyframes locationFadeBounce {
     0% {
@@ -738,7 +779,22 @@ p span{
 }
 
 .button-container {
-    margin-top: 30px;
+    margin-top: 20px;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.button-container .btn {
+    flex: 1;
+    min-width: auto;
+    padding: 6px 10px;
+    font-size: 14px;
+    white-space: nowrap;
+    text-align: center;
+    margin: 0;
 }
 
 .btn-animated {
